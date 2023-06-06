@@ -1,0 +1,28 @@
+{% extends 'vimad/base_menus.html' %}
+{% load static %}
+
+{% block title %}
+  <title>Generos</title>
+{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+<link rel="stylesheet" href="{% static 'css/slyder.css' %}" />
+<link rel="stylesheet" href="{% static 'css/generos.css' %}" />
+
+{% endblock css %}
+
+{% block contenido %}
+<div class="generos-container">
+  {% for genero in generos %}
+    <div class="genero-card">
+      <a class="genero-link" href="{% url 'vimad:cortos_por_genero' genero %}">{{ genero }}</a>
+    </div>
+  {% endfor %}
+</div>
+{% endblock contenido %}
+
+{% block js %}
+  <!--js scripts de index y cortos-->
+  {% include 'vimad_app/includes/js_scripts_cortos_index.html' %}
+{% endblock js %}

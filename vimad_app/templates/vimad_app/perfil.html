@@ -1,0 +1,109 @@
+{% extends 'vimad/base_menus.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Ajustes</title>
+{% endblock title %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/perfil.css' %}">
+{% endblock css %}
+
+{% block contenido %}
+    <div id="perfil">
+        <img src="{% static 'png/perfil.png' %}" alt="perfil" id="foto">
+        <br>
+    </div>
+    <br>
+    <br>
+    <br>
+    <div id="preferencia">
+        <div>
+            <h2 class="title">Preferencias de la cuenta:</h2>
+        </div>
+        <div class="bloque">
+            <h4>
+                Facturación periódica
+            </h3>
+            <label class="label">
+                <input type="checkbox" />
+                <span class="checkbox"></span>
+            </label>
+            <h5>Su próxima facturacón periódica será el 25/06/2023</h5>
+        </div>
+        <br>
+        <div class="bloque">
+            <h4>
+                V.O.S.E. por defecto
+            </h3>
+            <label class="label">
+                <input type="checkbox" />
+                <span class="checkbox"></span>
+            </label>
+            <h5>Los vídeos se reproducirán en su idioma nativo por defecto</h5>
+        </div>
+        <br>
+        <div class="bloque">
+            <h4>
+                Mejor resolución de vídeo
+            </h3>
+            <label class="label">
+                <input type="checkbox" />
+                <span class="checkbox"></span>
+            </label>
+            <h5>Los vídeos se reproducirán en la calidad más alta que permita la pantalla</h5>
+        </div>
+        <br>
+        <div class="bloque">
+            <h4>
+                Varias pantallas
+            </h3>
+            <label class="label">
+                <input class="input" type="checkbox" />
+                <span class="checkbox"></span>
+            </label>
+            <h5>Permite la reproducción simultánea en varias pantallas</h5>
+        </div>
+        <br>
+        <div class="bloque">
+            <h4>
+                Control parental
+            </h3>
+            <label class="label">
+                <input type="checkbox" />
+                <span class="checkbox"></span>
+            </label>
+            <h5>Bloquea contenido para mayores de 16 años</h5>
+        </div>
+        <br>
+        <div class="bloque">
+            <h4>
+                Cuenta preferida
+            </h3>
+            <label class="label">
+                <input type="checkbox" />
+                <span class="checkbox"></span>
+            </label>
+            <h5>Inicia sesión automáticamente con este perfil</h5>
+        </div>
+        <br>
+        <div class="bloque">
+            <h4>
+                Sonido MonoEstéreoEnvolventeDB
+            </h3>
+            <label class="label">
+                <input type="checkbox" />
+                <span class="checkbox"></span>
+            </label>
+            <h5>Prueba calidad de audio</h5>
+            <audio src="{% static 'audio/wrong-place-129242.mp3' %}"  controls>probar</audio>
+        </div>
+    </div>
+{% endblock contenido %}
+
+{% block js %}
+    <!--js scripts de index y cortos-->
+    {% include 'vimad_app/includes/js_scripts_cortos_index.html' %}
+{% endblock js %}
+

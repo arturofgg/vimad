@@ -1,0 +1,41 @@
+{% extends 'vimad/base_menus.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Sesión</title>
+{% endblock title %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/sesion.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+{% endblock css %}
+
+{% block contenido %}
+    <div id="user-text">
+    <h1 id="usuario">Selección de usuario</h1>
+</div>
+<div class="hero">
+    <ul class="slider">
+        <li class="slide s1">
+            <a href="{% url 'vimad:index' %}" class="perfil">Skyler</a>
+        </li>
+        <li class="slide s2">
+            <a href="{% url 'vimad:index' %}" class="perfil">Walter</a>
+        </li>
+        <li class="slide s3">
+            <a href="{% url 'vimad:index' %}" class="perfil">Hank</a>
+        </li>
+        <li class="slide s4">
+            <a href="{% url 'vimad:index' %}" class="perfil">Mike</a>
+        </li>
+        <li class="slide s5">
+            <a href="{% url 'vimad:index' %}" class="perfil">Jesse</a>
+        </li>
+    </ul>
+</div>
+{% endblock contenido %}
+
+{% block js %}
+    <!--js scripts de index y cortos-->
+    {% include 'vimad_app/includes/js_scripts_cortos_index.html' %}
+{% endblock js %}

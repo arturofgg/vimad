@@ -1,0 +1,39 @@
+{% extends 'vimad/base.html' %}
+{% load static %}
+
+{% block title %}
+  <title>Reproductor</title>
+{% endblock title %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/video.css' %}">
+{% endblock css %}
+
+{% block contenido %}
+  <div id="videoContainer">
+    <video id="myVideo">
+      <source src="{{ video_url }}" type="video/mp4" />
+      <track src="sub.vtt" kind="subtitles" srclang="es" label="español">
+    </track>
+  </video>
+  <span id="playPause"><i class="fa fa-play-circle">()</i></span>
+  <div id="controls">
+    <input type="range"
+           class="range-css"
+           id="volume"
+           min="0"
+           max="1"
+           step="0.1"
+           value="1" />
+    <span id="mute">mute</span>
+  </div>
+  <div id="progress-container">
+    <input type="range" class="range-css" id="progress" min="0" max="100" />
+    <span id="fullscreen">fullscreen</span>
+  </div>
+</div>
+{% endblock contenido %}
+
+{% block js %}
+<script src="{% static 'js/video.js' %}"></script>
+{% endblock js %}

@@ -1,0 +1,578 @@
+@media (min-width:978px) {
+
+
+
+
+*{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+
+
+.magicItem{
+    display: none;
+}
+
+#resultados-busqueda {
+    display: flex;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    height: 80vh; 
+float: left;
+z-index: 50;
+right:0;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: auto; /* Agregar scroll vertical */
+  }
+  
+  .modal-contenido {
+    background-color: #fff;
+    opacity: 58%;
+    width: 100px;
+    /* Establecer una altura máxima para activar el scroll vertical */
+    margin: 200px auto;
+    padding: 20px;
+ 
+   
+  }
+  
+#cerrar-modal {
+  margin-top: 10px;
+}
+
+
+
+
+
+.group{
+    width: 35%;
+    z-index: 80;
+    margin-left: 40%;
+  
+}
+.group a:nth-child(){
+    text-align: center;
+    float: right;
+}
+body {
+    background: linear-gradient(to right, #20034e   ,#3909aa );
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+#nav {
+    margin-top: 1%;
+    display: flex;
+    margin-left: 5px;
+}
+
+div.container-fluid div{
+    height: 110px;
+    display: flex;
+    align-items: center;
+}
+.container-fluid{
+    display: block;
+    position: sticky;
+    background: linear-gradient(to right, #20034e   ,#3909aa );
+    top: 0px;
+    z-index: 70;
+}
+
+.col{
+    position: relative;
+    width: 80%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+#listas{
+    justify-content: right;
+}
+
+.nav1 {
+   font-size: 150%;
+    padding-left: 5%;
+    color: white;
+    text-decoration: none;
+}
+
+.nav1:hover{
+    color: white;
+    text-decoration: none;
+}
+
+#buscar-input{
+    width: 60%;
+    height: 35%;
+    border: 4px solid #20034e;
+    margin-left: 4%;
+}
+
+#user{
+    display: flex;
+    justify-content: end;
+}
+
+ul, ol {
+    list-style:none;
+}
+
+.nav > li {
+    float:none;
+}
+.nav li{
+   right: 4rem;
+}
+
+#userlist{
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    padding-left: 3%;
+}
+
+.nav li a {
+    color:#fff;
+    text-decoration:none;
+    padding:10px 12px;
+    display:flex;
+    justify-content: baseline;
+    padding-left: 1%;
+}
+
+.desplegable{
+    text-align: center;
+}
+
+.nav li a:hover {
+    background-color:#434343;
+    font-weight: bold;
+}
+
+.nav li ul {
+    display:none;
+    position:absolute;
+    min-width:150px;
+}
+
+.nav li:hover > ul {
+    display:block;
+}
+
+.nav li ul li {
+    position:relative;
+    display: block;
+}
+
+ .nav li ul li ul {
+    
+    top:0px;
+}
+
+.pic{
+    padding-right: 12%;
+}
+
+/*Estilo slide de películas*/
+h1{
+    color: #20034e;
+}
+
+.carousel-inner img {
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    height: 20%;
+  }
+
+.pel{
+    background-color: white;
+    width: 100%;
+    height: 100%;
+}
+
+#demo{
+    height:300px;
+}
+
+/*Estilo para el no-slide de peliculas*/
+.seccion{
+    text-align: center;
+    margin: auto;
+}
+
+.seleccion{
+   height: 100%;
+    width: 100%;
+    
+    display: inline-block;
+    transition: all 0.5s;
+}
+
+.seleccion:hover{
+    height:105%;
+    width: 105%;
+   /* z-index: 200;*/
+    transition: all 0.5s; 
+}
+
+.titulos{
+    color: #fff;
+}
+
+/*Otro estilo para slide*/
+.carro{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+.main-scroll-div{
+    width: 90%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid red;
+}
+
+.cover{
+    position:relative;
+    width: 90%;
+    height: 50%;
+}
+
+.cover::before{
+    position: absolute;
+    content: "";
+    left:0;
+    top:0;
+    z-index: 10;
+    height: 100%;
+    width: 150px;
+}
+
+.cover::after{
+    position: absolute;
+    content: "";
+    right:0;
+    top:0;
+    z-index: 10;
+    height: 100%;
+    width: 150px;
+}
+
+.scroll-images{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    overflow: auto;
+    position: relative;
+    scroll-behavior: smooth;
+}
+
+.child{
+    height: 320px;
+    width: 250px;
+    margin: 1px 10px;
+    cursor: pointer;
+    overflow: hidden;
+    border: 1px solid white;
+}
+
+.scroll-images::-webkit-scrollbar{
+-webkit-appearemce:none;
+}
+
+.child-img{
+    width: 100%;
+    height: 100%;
+}
+
+.marco{
+    position: relative;
+    display: inline-block;
+    z-index: 0;
+}
+}
+@media (max-width:978px) {
+    *{
+        margin: 0;
+        padding: 0;
+        outline: none;
+        font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    }
+    
+    body {
+        background: linear-gradient(to right, #20034e   ,#3909aa );
+        overflow-x: hidden;
+    }
+    
+    #nav {
+        margin-top: 1%;
+        display: flex;
+        margin-left: 5px;
+    }
+    
+    div.container-fluid div{
+        height: 110px;
+        display: flex;
+        align-items: center;
+    }
+    .container-fluid{
+        display: block;
+        position: sticky;
+        background: linear-gradient(to right, #20034e   ,#3909aa );
+        top: 0px;
+        z-index: 70;
+    }
+    
+    .col{
+        position: relative;
+        width: 80%;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+    
+    #listas{
+        justify-content: right;
+    }
+    
+    .nav1 {
+       /* font-size: 150%;
+        padding-left: 5%;
+        color: white;
+        text-decoration: none; */
+        display: none;
+    }
+    
+    .nav1:hover{
+        color: white;
+        text-decoration: none;
+    }
+    #buscador > img{
+        display: none;
+    }
+    #buscar-input{
+        display: none;
+    }
+    
+    #user{
+        display: flex;
+        justify-content: end;
+    }
+    
+    ul, ol {
+        list-style:none;
+    }
+    
+    .nav > li {
+        float:none;
+    }
+    .nav li{
+       right: 4rem;
+    }
+    
+    #userlist{
+        margin: 0;
+        padding: 0;
+        justify-content: center;
+        padding-left: 3%;
+    }
+    
+    .nav li a {
+        color:#fff;
+        text-decoration:none;
+        padding:10px 12px;
+        display:flex;
+        justify-content: baseline;
+        padding-left: 1%;
+    }
+    
+    .desplegable{
+        text-align: center;
+    }
+    
+    .nav li a:hover {
+        background-color:#434343;
+        font-weight: bold;
+    }
+    
+    .nav li ul {
+        display:none;
+        position:absolute;
+        min-width:150px;
+    }
+    
+    .nav li:hover > ul {
+        display:block;
+    }
+    
+    .nav li ul li {
+        position:relative;
+        display: block;
+    }
+    
+     .nav li ul li ul {
+        
+        top:0px;
+    }
+    
+    .pic{
+        padding-right: 12%;
+    }
+    
+    /*Estilo slide de películas*/
+    h1{
+        color: #20034e;
+    }
+    
+    .carousel-inner img {
+        align-items: center;
+        justify-content: center;
+        width: 20%;
+        height: 20%;
+      }
+    
+    .pel{
+        background-color: white;
+        width: 100%;
+        height: 100%;
+    }
+    
+    #demo{
+        height:300px;
+    }
+    
+    /*Estilo para el no-slide de peliculas*/
+    .seccion{
+        text-align: center;
+        margin: auto;
+    }
+    
+    .seleccion{
+       height: 100%;
+        width: 100%;
+        
+        display: inline-block;
+        transition: all 0.5s;
+    }
+    
+    .seleccion:hover{
+        height:105%;
+        width: 105%;
+       /* z-index: 200;*/
+        transition: all 0.5s; 
+    }
+    
+    .titulos{
+        color: #fff;
+    }
+    
+    /*Otro estilo para slide*/
+    .carro{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+        padding-left: 3%;
+        padding-right: 3%;
+    }
+    
+    .main-scroll-div{
+        width: 90%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 2px solid red;
+    }
+    
+    .cover{
+        position:relative;
+        width: 90%;
+        height: 50%;
+    }
+    
+    .cover::before{
+        position: absolute;
+        content: "";
+        left:0;
+        top:0;
+        z-index: 10;
+        height: 100%;
+        width: 150px;
+    }
+    
+    .cover::after{
+        position: absolute;
+        content: "";
+        right:0;
+        top:0;
+        z-index: 10;
+        height: 100%;
+        width: 150px;
+    }
+    
+    .scroll-images{
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        overflow: auto;
+        position: relative;
+        scroll-behavior: smooth;
+    }
+    
+    .child{
+        height: 320px;
+        width: 250px;
+        margin: 1px 10px;
+        cursor: pointer;
+        overflow: hidden;
+        border: 1px solid white;
+    }
+    
+    .scroll-images::-webkit-scrollbar{
+    -webkit-appearemce:none;
+    }
+    
+    .child-img{
+        width: 100%;
+        height: 100%;
+    }
+    
+    .marco{
+        position: relative;
+        display: inline-block;
+        z-index: 0;
+    }
+
+    .form-inline{
+        display: none;
+    }
+    #buscar-btn{
+        display: none;
+    }
+    .magicItem{
+        margin-left: 3%;
+      
+    }
+    .nav12{
+        
+        margin-left: 3%;
+    }
+}
