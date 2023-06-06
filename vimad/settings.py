@@ -121,3 +121,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+#SMPT Configuration
+EMAIL_BACKEND = settingslocal.EMAIL_BACKEND
+EMAIL_HOST = settingslocal.EMAIL_HOST
+EMAIL_USE_TLS = settingslocal.EMAIL_USE_TLS
+EMAIL_PORT = settingslocal.EMAIL_PORT
+EMAIL_HOST_USER = settingslocal.EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = settingslocal.EMAIL_HOST_PASSWORD

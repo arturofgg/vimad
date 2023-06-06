@@ -196,8 +196,8 @@ def validate_username(username):
 
 
 def validate_password(password, username=None):
-    if len(password) < 6:
-        raise ValidationError('La contraseña debe tener al menos 6 caracteres.')
+    if len(password) < 8:
+        raise ValidationError('La contraseña debe tener al menos 8 caracteres.')
 
     if len(password) > 20:
         raise ValidationError('La contraseña no puede tener más de 20 caracteres.')
@@ -205,8 +205,8 @@ def validate_password(password, username=None):
     if username and username.lower() in password.lower():
         raise ValidationError('La contraseña no puede contener el nombre de usuario.')
 
-    if not re.search(r'\d', password):
-        raise ValidationError('La contraseña debe contener al menos un número.')
+    # if not re.search(r'\d', password):
+    #     raise ValidationError('La contraseña debe contener al menos un número.')
     
     # if not re.search(r'[A-Z]', password):
     #     raise ValidationError('La contraseña debe contener al menos una letra mayúscula.')
