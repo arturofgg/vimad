@@ -4,10 +4,12 @@ from .models import Corto
 from django.db import IntegrityError
 from django.db.models import Q
 from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .forms import CreateUserForm, CustomAuthenticationForm
+from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
+import re
 
 
 # index - LISTADO DE CORTOS INICIAL - LISTADO DE CORTOS POR GENERO, IDIOMA, etc
@@ -20,23 +22,15 @@ def index(request, genero=None, idioma=None):
         idioma='español').order_by('?'))[:10]
     return render(request, 'vimad_app/index.html', {'cortos': cortos, 'cortos_animacion': cortos_animacion, 'cortos_espanol': cortos_espanol})
 
-# cortos - LISTADO DE CORTOS POR GENERO, IDIOMA, etc
-
-
-# def cortos(request, genero=None, idioma=None):
-#     cortos_drama = list(Corto.objects.filter(genero='drama').order_by('?'))[:10]
-#     cortos_animacion = list(Corto.objects.filter(
-#         genero='animacion').order_by('?'))[:10]
-#     cortos_espanol = list(Corto.objects.filter(idioma='español').order_by('?'))[:10]
-#     return render(request, 'vimad_app/cortos.html', {'cortos_drama': cortos_drama, 'cortos_animacion': cortos_animacion, 'cortos_espanol': cortos_espanol})
-
 # LISTADO DE GENEROS
+
 
 def generos(request):
     generos = Corto.objects.values_list('genero', flat=True).distinct()
     return render(request, 'vimad_app/generos.html', {'generos': generos})
 
 # VISTA DE CORTOS POR GENERO
+
 
 def cortos_por_genero(request, genero):
     cortos = Corto.objects.filter(genero=genero)
@@ -45,10 +39,12 @@ def cortos_por_genero(request, genero):
 
 # about
 
+
 def about(request):
     return render(request, 'vimad_app/about.html')
 
 # perfil
+
 
 @login_required(login_url='vimad:inicio')
 def perfil(request):
@@ -56,11 +52,13 @@ def perfil(request):
 
 # sesion
 
+
 @login_required(login_url='vimad:inicio')
 def sesion(request):
     return render(request, 'vimad_app/sesion.html')
 
 # video
+
 
 @login_required(login_url='vimad:inicio')
 def video(request, slug):
@@ -70,6 +68,7 @@ def video(request, slug):
     return render(request, 'vimad_app/video.html', {'video_url': corto.video.url})
 
 # ficha - USO DE MODELOS COGIENDO slug POR URL
+
 
 def ficha(request, slug):
     corto = get_object_or_404(Corto, slug=slug)
@@ -88,6 +87,7 @@ def ficha(request, slug):
 
 
 # BUSCADOR
+
 
 def buscar(request):
     query = request.GET.get('q', '')
@@ -114,6 +114,7 @@ def buscar(request):
 
 # register
 
+
 def register(request):
     if request.user.is_authenticated:
         return redirect('vimad:index')
@@ -123,24 +124,101 @@ def register(request):
                 'form': CreateUserForm
             })
         else:
-            if request.POST['password1'] == request.POST['password2']:
+            username = request.POST.get('username')
+            email = request.POST.get('email')
+            password1 = request.POST.get('password1')
+            password2 = request.POST.get('password2')
+
+            try:
+                # Validar el nombre de usuario
+                validate_username(username)
+            except ValidationError as e:
+                return render(request, 'vimad_app/register.html', {
+                    'form': CreateUserForm,
+                    "error": ' '.join(e.messages),
+                })
+
+            try:
+                # Validar el formato del correo electrónico
+                validate_email(email)
+            except ValidationError:
+                return render(request, 'vimad_app/register.html', {
+                    'form': CreateUserForm,
+                    "error": 'Por favor, introduce un correo electrónico válido',
+                })
+            
+            try:
+                # Validar la contraseña
+                validate_password(password1, username)
+            except ValidationError as e:
+                return render(request, 'vimad_app/register.html', {
+                    'form': CreateUserForm,
+                    "error": ' '.join(e.messages),
+                })
+
+            if password1 == password2:
+                if User.objects.filter(email=email).exists():
+                    return render(request, 'vimad_app/register.html', {
+                        'form': CreateUserForm,
+                        "error": 'Este correo electrónico ya está registrado',
+                    })
                 try:
-                    user = User.objects.create_user(username=request.POST['username'],
-                                                    password=request.POST['password1'])
+                    user = User.objects.create_user(
+                        username=username,
+                        email=email,
+                        password=password1
+                    )
                     user.save()
                     login(request, user)
                     return redirect('vimad:index')
                 except IntegrityError:
                     return render(request, 'vimad_app/register.html', {
                         'form': CreateUserForm,
-                        "error": 'El usuario ya existe',
+                        "error": 'Ya hay un usuario con este nombre',
                     })
-            return render(request, 'vimad_app/register.html', {
-                'form': CreateUserForm,
-                "error": 'Las contraseñas no coinciden',
-            })
+            else:
+                return render(request, 'vimad_app/register.html', {
+                    'form': CreateUserForm,
+                    "error": 'Las contraseñas no coinciden',
+                })
+
+# validacion del nombre de usuario
+
+
+def validate_username(username):
+    if len(username) < 3 or len(username) > 16:
+        raise ValidationError('El nombre de usuario debe tener entre 3 y 16 caracteres.')
+
+    if not re.match(r'^[\w.@+-]+$', username):
+        raise ValidationError('El nombre de usuario solo puede contener letras, dígitos y los caracteres @/./+/-/_.')
+    
+# validacion contraseña
+
+
+def validate_password(password, username=None):
+    if len(password) < 6:
+        raise ValidationError('La contraseña debe tener al menos 6 caracteres.')
+
+    if len(password) > 20:
+        raise ValidationError('La contraseña no puede tener más de 20 caracteres.')
+
+    if username and username.lower() in password.lower():
+        raise ValidationError('La contraseña no puede contener el nombre de usuario.')
+
+    if not re.search(r'\d', password):
+        raise ValidationError('La contraseña debe contener al menos un número.')
+    
+    # if not re.search(r'[A-Z]', password):
+    #     raise ValidationError('La contraseña debe contener al menos una letra mayúscula.')
+    
+    # if not re.search(r'[a-z]', password):
+    #     raise ValidationError('La contraseña debe contener al menos una letra minúscula.')
+
+    # if not re.search(r'[\W_]', password):
+    #     raise ValidationError('La contraseña debe contener al menos un carácter especial.')
 
 # login
+
 
 def inicio(request):
     if request.user.is_authenticated:
@@ -163,6 +241,7 @@ def inicio(request):
                 return redirect('vimad:index')
 
 # logout
+
 
 def signout(request):
     logout(request)

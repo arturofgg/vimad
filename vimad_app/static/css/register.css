@@ -31,9 +31,9 @@ body {
 }
 
 img {
-  margin: 0 auto 30px;
-  width: 140px;
-  height: 140px;
+  margin: 0 auto 0px;
+  width: 135px;
+  height: 135px;
   object-fit: contain;
 }
 
