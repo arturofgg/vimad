@@ -5,6 +5,7 @@
 {% endblock title %}
 {% block css %}
   <link rel="stylesheet" href="{% static 'css/inicio.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" media="all">
 {% endblock css %}
 {% block contenido %}
   <div class="bground">
@@ -25,7 +26,7 @@
         {{ form.password }}
         <button type="submit" class="control">LOG IN</button>
         <button class="control" type="button">
-          <a href="{% url 'vimad:register' %}" class="control reg">SIGN UP</a>
+          <a href="{% url 'vimad:register' %}" >SIGN UP</a>
         </button>
       </form>
     </div>
