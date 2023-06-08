@@ -11,7 +11,6 @@ from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 import re
 
-
 # index - LISTADO DE CORTOS INICIAL - LISTADO DE CORTOS POR GENERO, IDIOMA, etc
 
 def index(request, genero=None, idioma=None):
@@ -49,13 +48,6 @@ def about(request):
 @login_required(login_url='vimad:inicio')
 def perfil(request):
     return render(request, 'vimad_app/perfil.html')
-
-# sesion
-
-
-@login_required(login_url='vimad:inicio')
-def sesion(request):
-    return render(request, 'vimad_app/sesion.html')
 
 # video
 
@@ -146,7 +138,7 @@ def register(request):
                     'form': CreateUserForm,
                     "error": 'Por favor, introduce un correo electrónico válido',
                 })
-            
+
             try:
                 # Validar la contraseña
                 validate_password(password1, username)
@@ -187,35 +179,28 @@ def register(request):
 
 def validate_username(username):
     if len(username) < 3 or len(username) > 16:
-        raise ValidationError('El nombre de usuario debe tener entre 3 y 16 caracteres.')
+        raise ValidationError(
+            'El nombre de usuario debe tener entre 3 y 16 caracteres.')
 
     if not re.match(r'^[\w.@+-]+$', username):
-        raise ValidationError('El nombre de usuario solo puede contener letras, dígitos y los caracteres @/./+/-/_.')
-    
+        raise ValidationError(
+            'El nombre de usuario solo puede contener letras, dígitos y los caracteres @/./+/-/_.')
+
 # validacion contraseña
 
 
 def validate_password(password, username=None):
     if len(password) < 8:
-        raise ValidationError('La contraseña debe tener al menos 8 caracteres.')
+        raise ValidationError(
+            'La contraseña debe tener al menos 8 caracteres.')
 
     if len(password) > 20:
-        raise ValidationError('La contraseña no puede tener más de 20 caracteres.')
+        raise ValidationError(
+            'La contraseña no puede tener más de 20 caracteres.')
 
     if username and username.lower() in password.lower():
-        raise ValidationError('La contraseña no puede contener el nombre de usuario.')
-
-    # if not re.search(r'\d', password):
-    #     raise ValidationError('La contraseña debe contener al menos un número.')
-    
-    # if not re.search(r'[A-Z]', password):
-    #     raise ValidationError('La contraseña debe contener al menos una letra mayúscula.')
-    
-    # if not re.search(r'[a-z]', password):
-    #     raise ValidationError('La contraseña debe contener al menos una letra minúscula.')
-
-    # if not re.search(r'[\W_]', password):
-    #     raise ValidationError('La contraseña debe contener al menos un carácter especial.')
+        raise ValidationError(
+            'La contraseña no puede contener el nombre de usuario.')
 
 # login
 

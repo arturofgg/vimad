@@ -1,24 +1,14 @@
 {% extends 'vimad/base_menus.html' %}
 {% load static %}
-
 {% block title %}
     <title>Ajustes</title>
 {% endblock title %}
-
 {% block css %}
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/perfil.css' %}">
 {% endblock css %}
-
 {% block contenido %}
-    <div id="perfil">
-        <img src="{% static 'png/perfil.png' %}" alt="perfil" id="foto">
-        <br>
-    </div>
-    <br>
-    <br>
-    <br>
-    <div id="preferencia">
+    <br><div id="preferencia">
         <div>
             <h2 class="title">Preferencias de la cuenta:</h2>
         </div>
@@ -101,9 +91,7 @@
         </div>
     </div>
 {% endblock contenido %}
-
 {% block js %}
     <!--js scripts de index y cortos-->
     {% include 'vimad_app/includes/js_scripts_cortos_index.html' %}
 {% endblock js %}
-

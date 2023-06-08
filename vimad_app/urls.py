@@ -3,10 +3,8 @@ from . import views
 
 app_name = 'vimad'
 urlpatterns = [
-
     path('', views.index, name='index'),
     path('perfil/', views.perfil, name='perfil'),
-    path('sesion/', views.sesion, name='sesion'),
     path('video/<slug:slug>/', views.video, name='video'),
     path('ficha/<slug:slug>/', views.ficha, name='ficha'),
     path('login/', views.inicio, name='inicio'),

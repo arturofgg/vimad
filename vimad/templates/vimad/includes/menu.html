@@ -1,4 +1,3 @@
-#
 {% load static %}
 <div class="container-fluid text-white">
     <div class="row" id="nav">
@@ -54,15 +53,6 @@
                     <ul class="desplegable">
                         <!--COMPRUEBO SI HAY SESION-->
                         {% if user.is_authenticated %}
-                            <li>
-                                <a href="{% url 'vimad:sesion' %}">
-                                    <img src="{% static 'svg/user2.svg' %}"
-                                         alt="perfil"
-                                         height="20px"
-                                         width=""
-                                         class="pic">
-                                Perfil</a>
-                            </li>
                             <li>
                                 <a href="{% url 'vimad:perfil' %}">
                                     <img src="{% static 'svg/settings.svg' %}"

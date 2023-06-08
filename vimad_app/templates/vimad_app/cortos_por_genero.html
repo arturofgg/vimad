@@ -1,20 +1,16 @@
 {% extends 'vimad/base_menus.html' %}
 {% load static %}
-
 {% block title %}
   <title>Cortos por Género</title>
 {% endblock title %}
-
 {% block css %}
-<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
-<link rel="stylesheet" href="{% static 'css/slyder.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/slyder.css' %}" />
 {% endblock css %}
-
 {% block contenido %}
-{% include 'vimad_app/includes/cortos_list_block.html' %}
+  {% include 'vimad_app/includes/cortos_list_block.html' %}
 {% endblock contenido %}
-
 {% block js %}
-<!--js scripts de index y cortos-->
-{% include 'vimad_app/includes/js_scripts_cortos_index.html' %}
+  <!--js scripts de index y cortos-->
+  {% include 'vimad_app/includes/js_scripts_cortos_index.html' %}
 {% endblock js %}

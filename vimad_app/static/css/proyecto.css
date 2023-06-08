@@ -576,3 +576,9 @@ h1{
         margin-left: 3%;
     }
 }
+
+@media (max-width:462px) {
+#userlist{
+    display:none;
+}
+}

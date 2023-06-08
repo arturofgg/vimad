@@ -18,14 +18,17 @@
           <div class="swiper-wrapper">
             <!-- Slides -->
             <div class="swiper-slide">
-              <img src="{% static 'png/logo-no-background.png' %}" alt="vimad logo" />
+              <a href="{% url 'vimad:index' %}">
+                <img src="{% static 'png/logo-no-background.png' %}" alt="vimad logo" />
+              </a>
               <h3 class="error-message">{{ error }}</h3>
               <h2 class="white">Bienvenido!</h2>
               <p class="white">Empieza introduciendo tu correo:</p>
               {{ form.email }}
               <p class="white">Y el nombre de usuario que deseas:</p>
               {{ form.username }}
-              <button disabled type="button" onclick="gotoSlide(1)">Siguiente</button><br>
+              <button disabled type="button" onclick="gotoSlide(1)">Siguiente</button>
+              <br>
             </div>
             <div class="swiper-slide">
               <div className="image-wrapper">

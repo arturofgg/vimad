@@ -1,14 +1,11 @@
 {% extends 'vimad/base.html' %}
 {% load static %}
-
 {% block title %}
   <title>Reproductor</title>
 {% endblock title %}
-
 {% block css %}
   <link rel="stylesheet" href="{% static 'css/video.css' %}">
 {% endblock css %}
-
 {% block contenido %}
   <div id="videoContainer">
     <video id="myVideo">
@@ -33,7 +30,6 @@
   </div>
 </div>
 {% endblock contenido %}
-
 {% block js %}
-<script src="{% static 'js/video.js' %}"></script>
+  <script src="{% static 'js/video.js' %}"></script>
 {% endblock js %}

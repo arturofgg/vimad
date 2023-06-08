@@ -5,15 +5,19 @@
 {% endblock title %}
 {% block css %}
   <link rel="stylesheet" href="{% static 'css/inicio.css' %}" />
-  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" media="all">
+  <link rel="stylesheet"
+        href="{% static 'css/bootstrap.min.css' %}"
+        media="all">
 {% endblock css %}
 {% block contenido %}
   <div class="bground">
     <div class="login-card">
-      <img src="{% static 'png/logo-no-background.png' %}"
-           height=""
-           width=""
-           alt="vimad logo" />
+      <a href="{% url 'vimad:index' %}">
+        <img src="{% static 'png/logo-no-background.png' %}"
+             height=""
+             width=""
+             alt="vimad logo" />
+      </a>
       <h2>Inicio de sesión</h2>
       <h3>Bienvenido a tu propio cine</h3>
       <form action="{% url 'vimad_app:inicio' %}"
@@ -28,8 +32,8 @@
           <a href="{% url 'vimad_app:register' %}">SIGN UP</a>
         </button>
         <button class="control" type="button">
-          <a href="{% url 'reset_password' %}">RECUPERAR CONTRASEÑA</a>
-        </button>        
+          <a href="{% url 'reset_password' %}">REESTABLECER CONTRASEÑA</a>
+        </button>
       </form>
     </div>
   </div>

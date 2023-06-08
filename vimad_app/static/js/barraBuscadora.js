@@ -12,7 +12,7 @@ $(document).ready(function() {
           $('#resultados-busqueda').empty();
   
           if (data.cortos.length == 0) {
-            $('#resultados-busqueda').append('<p>No se encontraron resultados.</p>');
+            $('#resultados-busqueda').append('<h1 style="color: white;">No se encontraron resultados.</h1>');
           } else {
             $.each(data.cortos, function(index, corto) {
               var urlFicha = '/ficha/' + corto.slug;
